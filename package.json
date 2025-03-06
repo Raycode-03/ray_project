@@ -1,13 +1,14 @@
 {
-  "name": "advanced_javascript",
+  "name": "app.js",
   "version": "1.0.0",
-  "main": "advanced_javascript.js",
+  "main": "app.js",
   "engines": {
-    "node": "v20.x"
+    "node": "v20.16.0"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node app.js"
+    "start": "node app.js",
+    "build":"echo 'No build step needed'"
   },
   "keywords": [],
   "author": "",
