@@ -1,0 +1,30 @@
+<%-include ('../includes/head',{pagetitle:'All Products (Admin)'} )%>
+<link rel="stylesheet" href="/css/product.css">
+<script src="/js/delete_product.js" defer></script>
+</head>
+<body>
+    <%-include ('../includes/header')%>
+    <main>
+        <h1>Products Administration </h1>
+        <section>
+            <h2>Manage Products</h2>
+            <p>
+                <a href="/admin/products/new"><button class="add_product">Add Products</button></a>
+            </p>
+        </section>
+        <section>
+            <ul id="product_grid">   
+                
+            <%for(const p of product) { %>
+                <li class="product_list">
+                    <% if(!p) { %>
+                        <p>Product is not avaliable pls create one...</p>        
+                    <% } else { %>
+                        <%-include ('includes/product_item',{p})%>
+                    <% } %>
+                </li>
+                <% } %>
+            </ul>
+        </section>
+    </main>
+<%-include ('../includes/footer') %>

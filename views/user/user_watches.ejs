@@ -1,0 +1,12 @@
+<%-include ('../includes/head', {pagetitle:'kongahub Watches'})%>
+<link rel="stylesheet" href="/css/product.css">
+<link rel="stylesheet" href="/css/filter.css">
+<script src="/js/filter.js" defer></script>
+<script src="/js/prevent_submit.js" defer></script>
+</head>
+<body>
+<%-include('../includes/header')%>
+
+<%-include ('includes/user_products',{products,page_type:'watches',type_name:['Smart','Rolex','Casio']}) %>
+
+<%-include ('../includes/footer')%>

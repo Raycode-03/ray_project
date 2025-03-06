@@ -1,0 +1,44 @@
+<%-include ('../includes/head', {pagetitle:'Cart'})%>
+<link rel="stylesheet" href="/css/cart.css">
+<script src="/js/prevent_submit.js" defer></script>
+</head>
+<body>
+<%-include('../includes/header')%>
+<main>
+    
+<article>
+    <ul class="cart_con">
+
+        <%if(cart_item.length<=0){ %>
+            <h1 class="empty">Your Cart is Empty</h1>        
+            <a  href="/kongahub/phones"><button class="home_btn">Product</button></a>
+            <% }else{ %>
+        <% for (let item of cart_item) { %>
+        <li>
+        <h1 class="title"><%=item.title%></h1>
+        <div class="flex_con">
+            <img src="<%=item.image_path%>" alt="<%=item.title%>" class="img">
+        <p><%=item.amount%></p>
+        <p>₦<%=item.price%></p>
+        <form action="/cart/<%=item._id%>?_csrf=<%= locals.csrfToken %>" method="post" id="form">
+           <button class="close_btn"> <img src="/logo/close.png" alt="" class="close"></button>
+        </form>
+        </div>
+        
+        </li>
+    <% } %> 
+    </ul>
+    <hr class="hor_line">
+    <div id="total">
+        <h3>Total</h3>
+         <p class="total_price">₦<%=total%></p>
+        
+        </div>
+        <form action="/paystack?_csrf=<%= locals.csrfToken %>" method="post" id="form">
+            <input type="hidden" name="total" value="<%=total%>">
+            <a href=""><button class="home_btn" id="check_out">Check Out</button></a>
+        </form>
+        <% }%>
+</article>
+</main>
+<%-include ('../includes/footer')%>

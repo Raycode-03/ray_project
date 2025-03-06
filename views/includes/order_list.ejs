@@ -1,0 +1,8 @@
+<ol>
+    <% for (let o of orders) { %>
+        <li class="list_item">
+           <%-include ('order_item',{o}) %>
+        </li>
+    <% } %>
+    
+</ol>

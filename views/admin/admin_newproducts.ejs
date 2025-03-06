@@ -1,0 +1,13 @@
+<%-include ('../includes/head', {pagetitle:'Admin New Products'})%>
+<link rel="stylesheet" href="/css/form.css">
+<script src="/js/image_preview.js" defer></script>
+<script src="/js/prevent_submit.js" defer></script>
+</head>
+<body>
+<%-include('../includes/header')%>
+    <main>
+        
+        <h1>All products(Admin)</h1>
+        <%-include ('includes/product_form',{submitpath:'/admin/products/new',update,showproduct_type:true})%>
+    </main>
+<%-include ('../includes/footer')%>

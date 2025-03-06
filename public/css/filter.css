@@ -1,0 +1,44 @@
+/* for default buttons */
+
+.cat_icon{
+    top:0;
+    display: grid;
+    text-align: center;
+    grid-template-columns: repeat(auto-fit,minmax(50px,230px));
+    /* grid-template-rows: 0px; */
+    justify-content: space-evenly;
+    padding: 3rem;
+}
+.cat_icon>button{
+    background: linear-gradient(to top right, #0ade0a,#9999ec);
+    /* border: none; */
+    border-radius: 7px;
+    font-size: x-large;
+}
+.filter{
+
+    margin: 1rem auto;
+}
+@media screen and (max-width:48rem) {
+    .cat_icon{
+        
+        width: 4rem;
+        grid-template-columns: repeat(3,1fr);
+        gap: 10px;
+        
+    }
+    .cat_icon > button{
+        font-size: 0.9rem;
+        cursor: pointer;
+        padding: 8px 14px;
+        
+    }
+    input{
+        
+        padding: 5px 4px;
+        border: 1px solid;
+        width: 5rem;
+        grid-template-columns: repeat(3,1fr);
+        gap: 10px;
+    }
+}

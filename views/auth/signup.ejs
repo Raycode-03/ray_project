@@ -1,0 +1,46 @@
+<%-include ('../includes/head',{pagetitle:'Signup'} )%>
+<link rel="stylesheet" href="/css/form.css">
+<script src="/js/prevent_submit.js" defer></script>
+</head>
+<body>
+    <%-include('../includes/header')%>
+    <main>
+        <h1>Create an Account</h1>
+          <% if (inputdata.hasError){ %>
+            <div id="error">
+                <p id="input-error"><%=inputdata.Message%></p>
+            </div>
+       <% } %>
+        <form action="/signup" method="post" >
+            <input type="hidden" name="_csrf" value="<%=locals.csrfToken%>">
+            <p>
+                <input type="email" name="email"  placeholder="EMAIL" value="<%=inputdata.hasemail%>">
+            </p>
+            <p>
+                <input type="password" name="password" id="" minlength="6" required placeholder="PASSWORD">
+            </p>
+            <p>
+                
+                <input type="password" name="conpassword"  minlength="6" required placeholder="Confirm Password">
+            </p>
+            <p>
+                
+                <input type="text" name="fullname" required placeholder="Full Name" value="<%=inputdata.hasfullname%>">
+            </p>
+            <p>
+                
+                <input type="text" name="country" placeholder="Country"value="<%=inputdata.hascountry%>">
+            </p>
+            <p>
+                
+                <input type="text" name="state" required placeholder="State"value="<%=inputdata.hasstate%>">
+            </p>
+            
+
+            
+            <button>Create account</button>
+            <p>Already have an account?<a href="/login">Login instead</a></p>
+
+        </form>
+    </main>
+<%-include ('../includes/footer') %>

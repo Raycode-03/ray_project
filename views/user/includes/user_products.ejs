@@ -1,0 +1,43 @@
+<main>
+    <% if (messages.success){ %>
+        <div id="error">
+            <p id="input-error"><%=messages.success[0]%></p>
+        </div>
+   <% } %>
+    <h1>All products</h1>
+    <p> A list of products </p>
+      <!-- filter part of the page -->
+      <div class="filter"> 
+        <div class="dropdown">
+            <button class="filter_dropdown">Filter 🔽</button>
+        </div>
+        <div class="dropdown_menu_filter">
+            <div class="cat_icon">    
+                <input type="hidden" value="<%=page_type%>" class="page_name"> 
+                <input type="hidden" value="<%=locals.csrfToken%>"name="_csrf" class="_csrf">
+                <button class="box"><%=type_name[0]%></button>
+                <button  class='box'><%=type_name[1]%></button>
+                <button class='box'><%=type_name[2]%></button>
+              
+                </div>
+            <div class="filter_rating_div">
+                <input type="number" placeholder="Min" id="filterpricemin" step="500">
+                <input type="number" placeholder="Max" id="filterpricemax" step="1000">
+                <button id="filterbtn">Filter</button>
+            </div>
+        </div>
+</div>
+    <ul id="product_grid">
+        <% if(products.length<1) { %>
+            <p>Product is not avaliable pls create one...</p>        
+        <% } else { %>
+        <% for( const p of products){ %>
+        <li class='product_list'>
+           
+                <%-include ('product_item',{p,page_type,home_page:false}) %>
+            <% }%>
+        </li>
+    <%} %>
+    </ul>
+
+</main>

@@ -1,0 +1,34 @@
+<%-include ('../includes/head',{pagetitle:'Kongahub'} )%>
+<meta 
+        name="description" 
+        content="Welcome to kongohub, your one-stop online destination for the latest electronics and smartphones. We offer a wide selection of top brands and cutting-edge gadgets, all at competitive prices."
+    />
+<link rel="stylesheet" href="/css/home.css">
+<link rel="stylesheet" href="/css/product.css">
+<script src="/js/prevent_submit.js" defer></script>
+
+</head>
+<body>
+    <%-include('../includes/header')%>
+    <div class="main">
+        <div class="back">
+            <video src="/video/Come here to see the best Products we can offer_20240726_145701_0001.mp4" loop muted autoplay class="video"></video>
+        </div>
+        <div class="today_deals">
+            <h2>Today Deals</h2>
+            <ul id="product_grid">
+        <% if(deals.length<1) { %>
+            <p class="product_none">Product is not avaliable pls create one...</p>        
+        <% } else { %>
+        <% for( const p of deals){ %>
+        <li class='product_list'>
+           
+                <%-include ('product_item',{p,page_type,home_page:true}) %>
+            <% }%>
+        </li>
+    <%} %>
+    </ul>
+        </div>
+    </main>
+
+<%-include ('../includes/home_footer')%>

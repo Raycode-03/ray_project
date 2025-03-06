@@ -1,0 +1,42 @@
+<article>
+    <header class="order-summary">
+        <h2><span class="order-item-price">₦<%=o.total%></span> - <%=o.date%></h2>
+        <span class="badge"><%=o.status%></span>
+    </header>
+
+<section class="order-details">
+    <% if (locals.isAdmin) { %>
+        <address>
+            <p><a href="mailto:<%=o.user.email %>"><%= o.user.fullname%></a></p>
+            <p><%=o.user.address.country%> (<%=o.user.address.state %>)</p>
+        </address>
+    <% } %>
+    
+    <ul class="ul">
+        <% for (const item of o.productdata)  { %>
+            <li>
+                <%=item.title%> -
+                ₦<%=item.total_amount%>
+                (₦<%=item.price%> * <%=item.amount%> )
+                
+            </li>
+        <% } %>
+        
+    </ul>
+</section>
+<% if(locals.isAdmin){ %>
+    <section class="order-actions">
+            <form id="form">
+              <input type="hidden" name="_csrf" value="<%=locals.csrfToken%>">  
+              <input type="hidden" name="order_id" value="<%= o._id %>">
+              <select name="status" class="btn_option">
+                <option value="pending" <% if (o.status === 'pending') { %>selected<% } %>>Pending</option>
+                <option value="successful" <% if (o.status === 'successful') { %>selected<% } %>>Successful</option>
+                <option value="cancelled" <% if (o.status === 'cancelled') { %>selected<% } %>>Cancelled</option>
+              </select>
+              <button class="btn">Update</button>
+            </form>  
+          
+    </section>
+<% } %>
+</article>

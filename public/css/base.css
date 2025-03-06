@@ -1,0 +1,118 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+html{
+    font-family: monospace;
+    --green-100:#5aea5a;
+    --green-200:#10de10;
+    --green-300:#46f04b;
+    --white:#ffffff;
+    --red:#ff0000;
+    --red-100:#8f0b0b;
+    --primary-color:#3ec732;
+    --blue-100:#4c4cc0;
+    
+    --black:#000000;
+    text-align: center;
+}
+nav{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-left: 1rem;
+    padding-right:3rem;
+    padding-top: 1rem;
+    background: linear-gradient(to right, var(--green-200),var(--green-100));
+    height: 8rem;
+    
+    width: 100%;
+   
+    position: fixed;
+    z-index: 999;
+}
+nav>.link>ul{
+    padding-right: 6rem;
+}
+nav>.link>ul>li{
+    display: inline-block;
+    font-size: x-large;
+    padding-left: 4rem;
+    text-transform: uppercase;
+    /* padding-left: 2rem; */
+}
+
+
+ul>a{
+    text-decoration: none;
+    color:var(--white) ;
+    padding: 2rem;
+    text-transform: uppercase;
+    font-size: x-large;
+}
+
+
+ul>a:hover{
+    color: var(--green-200);
+}
+
+.logout{
+    border-radius: 8px;
+    border: none;
+    background-color: var(--white);
+    color: var(--green-200);
+    width: 5rem;
+    height: 3rem;
+}
+.logout:hover{
+    color: var(--green-100);
+    opacity: 50%;
+}
+/* for all the items under the navbAR */
+main{
+    padding-top: 9.55rem;
+}
+#btn_404{
+    cursor: pointer;
+    padding: 1.1rem;
+    width:12rem;
+    color:var(--white);
+    opacity:calc(84%);
+    border:var(--green-100);
+    border-radius: 2rem;
+    margin-top:0.3rem;
+    margin-bottom:0.3rem;
+    background: var(--green-200);
+}
+#btn_404>a{
+    text-decoration: none;
+    color: var(--white);
+}
+#error{
+    margin: 0 auto;
+    border: 2px solid gray;
+    text-decoration: none;
+    text-transform: uppercase;
+    cursor: pointer;
+    padding: 1.1rem;
+    width:29rem;
+    color:black;
+    font-weight: bolder;
+    opacity:calc(84%);
+    border:var(--green-100);
+    border-radius: 2rem;
+    margin-top:0.3rem;
+    margin-bottom:1rem;
+    background-color: rgb(175, 174, 172);
+    
+    box-shadow: 0 4px 10px 0px gray;   
+}
+@media screen and (max-width:48rem) {
+   #error{
+    width: 19rem;
+   } 
+   .logo img{
+    width: 12rem;
+   }
+}

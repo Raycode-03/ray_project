@@ -1,0 +1,133 @@
+main{
+    text-align: center;
+
+}
+h1{
+    font-size: 3rem;    
+    font-weight: bolder;
+    text-transform: uppercase;
+    color: var(--green-200);
+}
+
+form>p{
+    padding: 0.6rem;
+}
+form>p>input{
+    height: 2.5rem;
+    width: 33rem;
+}
+textarea{
+    width: 33rem;
+}
+label{
+    display: block;
+    padding-bottom: 5px;
+}
+#radio_container{
+    display: grid;
+    grid-template-columns: repeat(auto-fit,minmax(22px,90px));
+    grid-column-gap: 1rem;
+    grid-gap: 2rem;
+    
+    text-align: center;
+    margin: 0 auto;
+    width: 38rem;
+}
+button{
+    cursor: pointer;
+    padding: 1.1rem;
+    width:9rem;
+    color:var(--white);
+    opacity:calc(84%);
+    border:var(--green-100);
+    border-radius: 2rem;
+    margin-top:0.3rem;
+    margin-bottom:0.3rem;
+    background: var(--green-200);
+}
+.btn_container{
+    display: flex;
+    justify-content: space-evenly;
+    width: 28rem;
+    margin: 0 auto;
+}
+button:hover{
+    box-shadow:0px 0px 12px 3px;
+    opacity: calc(100%);
+}
+.btn_reset{
+    background-color: rgb(12, 56, 12);
+}
+.btn_reset:hover,.btn_reset:active{
+    background-color: rgb(21, 126, 21);
+}
+
+#input-error{
+    text-transform: uppercase;
+    color: var(--red);
+}
+
+/* for the login part */
+
+#login>form{
+    padding-top: 1rem;
+}
+#login_p{
+    padding-top: 1rem;
+}
+#image_upload{
+    
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    margin: 0 auto;
+    width: 33rem;
+    text-align: center;
+}
+#image_upload input{
+   max-width: 15rem; 
+}
+#image_upload img{
+    display:none;
+    width: 7rem;
+    height: 7rem;
+    object-fit: cover;
+    border-radius: 17px;
+}
+
+@media screen and (max-width:48rem) {
+    h1{
+        font-size: 1.8rem;    
+    }
+    
+    form>p>input,textarea{
+        height: 2.5rem;
+        width: 20rem;
+    }
+    #image_upload{
+        display: block;
+        width: 3rem;
+        margin-left: 2.4rem;
+    }
+    #image_upload input{
+        margin-bottom: 0.2rem;
+    }
+    
+    #radio_container, #radio_container>label{
+        display:block;  
+        width: 0.2rem;
+        align-items: center;
+        padding-right: 12em;
+        margin: 0 auto;
+    }
+    .btn_container{
+        display: flex;
+        justify-content: center;
+        width: 8rem;
+        margin: 0 auto;
+    }
+    .btn_container .btn_save{
+        margin-left: 2rem;
+    }
+
+}

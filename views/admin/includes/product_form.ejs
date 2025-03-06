@@ -1,0 +1,57 @@
+<form action="<%= submitpath%>?_csrf=<%= locals.csrfToken %>" id="form" method="post" enctype="multipart/form-data">
+    <% if (update.hasError){ %>
+        <div id="error">
+            <p id="input-error"><%=update.Message%></p>
+        </div>
+   <% } %>   
+    <p>
+        <label for="">Title:</label>
+        <input type="text" name="title" id="" required placeholder="Title" value="<%=update.title%>"></p>
+        
+    <div>
+        <label for="">Choose Image:</label>   
+        <p id="image_upload">
+            <input type="file" name="image" id="" required accept="image/png,imaeg/jpg" >
+            <img src="" alt="Selected image...">
+        </p>    
+    </div>
+    <p>
+        <label for="">Summary:</label>
+        <input type="text" name="summary" required maxlength="250" placeholder="Summary" value="<%=update.summary%>"></p>
+    <p>
+        <label for="">Price(₦):</label>
+        <input type="number" name="price" placeholder="Price" min="1000" required step="100" value="<%=update.price%>"></p>
+    <p>
+        <label for="">Description: </label>
+        <textarea class="text" type="text" required name="description" rows="7" placeholder="Enter the Description of the Product" aria-required="true"><%=update.description%></textarea>
+    </p>
+    <% if(showproduct_type){ %>
+    <p>
+     <label for="">Type of Product: </label>
+        <fieldset required style="border: none;">
+            <div id="radio_container">
+            <input type="radio" name="product" value="deals">
+            <label>Deals</label>
+            <input type="radio" name="product" value="watches">
+            <label>Watches</label>
+            <input type="radio" name="product" value="phones">
+            <label>Phones</label>
+            <input type="radio" name="product" value="laptops">
+            <label>Laptop</label>
+            <input type="radio" name="product" value="electronic_accessories">
+            <label>Electronic_Accessories</label>
+            </div>
+        </fieldset>
+    </p>
+
+    <p>
+    <label for="">Brand: </label>
+    <input type="text" name="brand" id="" placeholder="Brand (ex:apple or samsung pls dont make it plural)" value="<%=update.brand%>">
+    </p>
+    <%} %>
+    <p class="btn_container">
+        <button type="reset" class="btn_reset">RESET</button>
+        <button class="btn_save">SAVE</button>
+    </p>
+
+</form>
