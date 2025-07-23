@@ -79,19 +79,30 @@ app.use(csrf())
 app.use(addcsrftokenmiddlewear)
 
 // auth
-app.use(async (req,res,next)=>{
-    const user=req.session.user;
-    const isauth=req.session.isAuthenticated;
-    if(!user||!isauth){
+// commit changes to auth 
+App.use(async (req, res, next) => {
+    const user = req.session.user;
+    const isauth = req.session.isAuthenticated;
+
+    if (!user || !isauth) {
         return next();
     }
-    const user_db=await db.get_gb().collection('signup').findOne({_id:user.id})
-    const isAdmin=user_db.isAdmin
-    res.locals.isauth=isauth
-    res.locals.isAdmin=isAdmin
+
+    // Initialize isAdmin to false by default
+    let isAdmin = false; 
+
+    const user_db = await db.get_gb().collection('signup').findOne({ _id: user.id });
+
+    // Check if user_db exists and then access isAdmin
+    if (user_db) {
+        // If isAdmin property exists on user_db, use its value, otherwise it remains false
+        isAdmin = user_db.isAdmin || false; 
+    }
+
+    res.locals.isauth = isauth;
+    res.locals.isAdmin = isAdmin;
     next();
-}
-)
+});
 // middlewear for the routes
 app.use(auth);
 app.use(user);
