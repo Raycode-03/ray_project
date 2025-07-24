@@ -7,6 +7,8 @@ router.get('/',(req,res)=>{
   res.redirect('/kongahub');
 })
 router.get('/signup',(req,res)=>{
+//session is being requested even when session has expired 
+// Raymond work on when system works 
   let session_inputdata=req.session.inputdata
   if(!session_inputdata){
     session_inputdata={
