@@ -96,7 +96,7 @@ router.get('/login',(req,res)=>{
   let session_inputdata=req.session.inputdata
   if(!session_inputdata){
     session_inputdata={
-    hasErrror:false,
+    hasError:false,
     hasEmail:'',
     }
     
