@@ -80,7 +80,7 @@ app.use(addcsrftokenmiddlewear)
 
 // auth
 // commit changes to auth 
-App.use(async (req, res, next) => {
+app.use(async (req, res, next) => {
     const user = req.session.user;
     const isauth = req.session.isAuthenticated;
 
