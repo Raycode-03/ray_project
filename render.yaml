@@ -1,0 +1,13 @@
+services:
+  - type: web
+    name: my-node-app
+    runtime: node
+    plan: starter # or 'free' for testing (with limitations)
+    buildCommand: npm install
+    startCommand: npm start
+    envVars:
+      - key: NODE_ENV
+        value: production
+      # Add other environment variables as needed
+      # - key: API_KEY
+      #   sync: false # Set to false if you want to provide value via Render Dashboard for security
