@@ -23,7 +23,7 @@
         <% for( const p of deals){ %>
         <li class='product_list'>
            
-                <%-include ('product_item',{p,page_type,home_page:true}) %>
+                <%-include ('includes/product_item',{p,page_type:"deals",home_page:true}) %>
             <% }%>
         </li>
     <%} %>

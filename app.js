@@ -85,10 +85,13 @@ app.use(async (req,res,next)=>{
     if(!user||!isauth){
         return next();
     }
+    let isAdmin=false
     const user_db=await db.get_gb().collection('signup').findOne({_id:user.id})
-    const isAdmin=user_db.isAdmin
-    res.locals.isauth=isauth
-    res.locals.isAdmin=isAdmin
+	if(user_db){
+ 	   const isAdmin=user_db.isAdmin|| false
+		    res.locals.isauth=isauth
+		    res.locals.isAdmin=isAdmin
+	}
     next();
 }
 )
