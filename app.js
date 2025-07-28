@@ -79,10 +79,12 @@ app.use(csrf())
 app.use(addcsrftokenmiddlewear)
 
 // auth
-app.use(async (req,res,next)=>{
-    const user=req.session.user;
-    const isauth=req.session.isAuthenticated;
-    if(!user||!isauth){
+// commit changes to auth 
+App.use(async (req, res, next) => {
+    const user = req.session.user;
+    const isauth = req.session.isAuthenticated;
+
+    if (!user || !isauth) {
         return next();
     }
     let isAdmin=false
@@ -93,8 +95,7 @@ app.use(async (req,res,next)=>{
 		    res.locals.isAdmin=isAdmin
 	}
     next();
-}
-)
+});
 // middlewear for the routes
 app.use(auth);
 app.use(user);
