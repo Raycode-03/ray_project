@@ -2,7 +2,7 @@ services:
   - type: web
     name: my-node-app
     runtime: node
-    plan: starter # or 'free' for testing (with limitations)
+    plan: free # or 'free' for testing (with limitations)
     buildCommand: npm install
     startCommand: npm start
     envVars:
