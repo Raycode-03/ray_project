@@ -1,6 +1,5 @@
 <%-include ('../includes/head', {pagetitle:'Details Page'})%>
 <link rel="stylesheet" href="/css/details.css">
-<script src="/js/prevent_submit.js" defer></script>
 </head>
 <body>
 <%-include('../includes/header')%>
@@ -18,7 +17,8 @@
         <p>₦<%=details.price%></p>
         
         <div class="product_action">
-            <form action="/kongahub/products/cart/<%=details._id%>?_csrf=<%= locals.csrfToken %>" method="post" id="form">
+            <form action="/kongahub/products/cart/<%=details._id%>" method="post" id="form">
+                <input type="hidden" value="<%=locals.csrfToken%>"name="_csrf" class="_csrf">
                 <div class="no">
                         <select name="amount" id="">
                             <option value="1">1</option>

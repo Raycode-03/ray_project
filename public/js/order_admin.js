@@ -11,7 +11,6 @@ async function update_product(e) {
     const res = await fetch('/admin/orders/'+orderid, {
       method: "PATCH",
       body: JSON.stringify({
-        newstatus,
         _csrf:csrfToken
         
       }),

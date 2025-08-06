@@ -36,6 +36,9 @@ router.get('/cart',async(req,res,next)=>{
   }
   })
 router.post('/cart/:id',async(req,res,next)=>{
+  if(!res.locals.isauth){
+    return res.redirect('/login')
+  }
   try{
     id=new objectid(req.params.id);
     let delete_cart= await db.get_gb().collection('cart').deleteOne({_id:id});

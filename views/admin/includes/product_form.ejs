@@ -1,4 +1,5 @@
 <form action="<%= submitpath%>?_csrf=<%= locals.csrfToken %>" id="form" method="post" enctype="multipart/form-data">
+    <input type="hidden" value="<%=locals.csrfToken%>"name="_csrf" class="_csrf">
     <% if (update.hasError){ %>
         <div id="error">
             <p id="input-error"><%=update.Message%></p>

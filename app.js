@@ -5,6 +5,7 @@ const path=require ('path');
 const db=require('./data/database');
 // for port
 let port=3000;
+require('dotenv').config(); 
 // using enviroment variables
 if(process.env.PORT){
     port=process.env.PORT
@@ -32,8 +33,7 @@ const user_products=require('./routes/user_products');
 const cart=require('./routes/cart');
 const order=require('./routes/orders');
 const admin_order=require('./routes/admin_orders');
-// to prevent submit
-let prevent_submit=require('./routes/prevent_submit');
+
 // payment
 let payment=require('./routes/payment');
 // for the ejs 
@@ -51,7 +51,11 @@ const store=new mongodbstore(
         // the mongodb_url is needed for the session
         uri:mongodb_url,
         databaseName:'ray',
-        collection:'session'
+        collection:'session',
+        ttl: 62*20, // Session TTL in seconds (e.g., 60 seconds = 1 minute)
+           // This should generally match your cookie.maxAge / 1000
+        touchAfter: 30*20  // Update session in DB only after 30 seconds of inactivity
+                  // (if session data itself hasn't changed)
     }
 )
 store.on('error',(error)=>{
@@ -60,13 +64,15 @@ store.on('error',(error)=>{
 
 // for the session settings
 const session_set=session({
-    secret:'super-secret',
-    resave:false,
+    secret:process.env.session_secret,
+    resave: true, // This is key for resetting the timer on every request
     saveUninitialized:false,
     store:store,
     cookie:{
+        secure: process.env.NODE_ENV === 'production', // Use true if using HTTPS in production
+        httpOnly: true, // Helps prevent XSS attacks
         // max age in milli second
-        maxAge: 600*1000,
+        maxAge: 12*1000*100,
     }
 })
 
@@ -96,6 +102,15 @@ app.use(async (req, res, next) => {
 	}
     next();
 });
+// err on csrf_token 
+// note to future self add the err exire code when quering sessions
+app.use((err, req, res, next) => {
+        if(err.code=="EBADCSRFTOKEN"){
+            req.flash('error', 'Your session has expired or the request was tampered with. Please log in again.');
+            return res.redirect('/login'); // Redirect to login page
+        }
+  next(err); // Pass other errors to the next error handler
+    });
 // middlewear for the routes
 app.use(auth);
 app.use(user);

@@ -1,7 +1,6 @@
 const express=require('express');
 const router=express.Router();
 const imageupload=require('../middlewears/image_upload');
-
 const db= require('../data/database');
 // for object _id in the db
 const mongogb=require('mongodb');
@@ -60,6 +59,9 @@ router.get('/kongahub/:page_type/details/:id',async(req,res)=>{
 
 })
 router.post('/kongahub/products/cart/:id', async (req, res, next) => {
+  if(!res.locals.isauth){
+      return res.redirect('/login')
+      }
   try {
     // Check if user is logged in
     if (!req.session.user) {
@@ -78,7 +80,8 @@ router.post('/kongahub/products/cart/:id', async (req, res, next) => {
       return res.redirect(req.headers.referer || '/');
     }
 
-    const { title, price, image_path } = existingProduct;
+    const { title, price, imageUrl } = existingProduct;
+    console.log(existingProduct)
     const amount = +req.body.amount;
 
     // Validate amount
@@ -94,7 +97,7 @@ router.post('/kongahub/products/cart/:id', async (req, res, next) => {
     const data = {
       title,
       price,
-      image_path,
+      imageUrl,
       amount,
       total_amount,
       email,
@@ -136,6 +139,9 @@ router.post('/kongahub/products/cart/:id', async (req, res, next) => {
 });
 // for the filter part 
 router.get('/kongahub/:page_type/filter',async(req,res,next)=>{
+  if(!res.locals.isauth){
+    return res.redirect('/login')
+  }
   try{
   const page_type=req.params.page_type
   const filteritem=req.query.filteritem

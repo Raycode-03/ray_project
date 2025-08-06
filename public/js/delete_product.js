@@ -4,8 +4,11 @@ async function delete_product(e){
     const btn=e.target;
     const productid=btn.dataset.id
     const csrfToken=btn.dataset.csrf
-  const res= await fetch('/admin/products/delete/' + productid + '?_csrf='+ csrfToken,{
-        method:"DELETE"
+  const res= await fetch('/admin/products/delete/' + productid ,{
+        method:"DELETE",
+        body: JSON.stringify({
+            _csrf: csrfToken
+        })
     });
     if(!res.ok){
         alert('something went wrong !!')

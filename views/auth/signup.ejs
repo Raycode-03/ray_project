@@ -1,6 +1,5 @@
 <%-include ('../includes/head',{pagetitle:'Signup'} )%>
 <link rel="stylesheet" href="/css/form.css">
-<script src="/js/prevent_submit.js" defer></script>
 </head>
 <body>
     <%-include('../includes/header')%>
@@ -11,10 +10,10 @@
                 <p id="input-error"><%=inputdata.Message%></p>
             </div>
        <% } %>
-        <form action="/signup" method="post" >
+        <form action="/signup" method="post" id="form">
             <input type="hidden" name="_csrf" value="<%=locals.csrfToken%>">
             <p>
-                <input type="email" name="email"  placeholder="EMAIL" value="<%=inputdata.hasemail%>">
+                <input type="email" name="email" id="email_sign"  placeholder="EMAIL" value="<%=inputdata.hasemail%>">
             </p>
             <p>
                 <input type="password" name="password" id="" minlength="6" required placeholder="PASSWORD">

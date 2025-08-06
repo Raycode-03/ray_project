@@ -1,6 +1,5 @@
 <%-include ('../includes/head', {pagetitle:'Cart'})%>
 <link rel="stylesheet" href="/css/cart.css">
-<script src="/js/prevent_submit.js" defer></script>
 </head>
 <body>
 <%-include('../includes/header')%>
@@ -17,7 +16,7 @@
         <li>
         <h1 class="title"><%=item.title%></h1>
         <div class="flex_con">
-            <img src="<%=item.image_path%>" alt="<%=item.title%>" class="img">
+            <img src="<%=item.imageUrl%>" alt="<%=item.title%>" class="img">
         <p><%=item.amount%></p>
         <p>₦<%=item.price%></p>
         <form action="/cart/<%=item._id%>?_csrf=<%= locals.csrfToken %>" method="post" id="form">
@@ -34,8 +33,9 @@
          <p class="total_price">₦<%=total%></p>
         
         </div>
-        <form action="/paystack?_csrf=<%= locals.csrfToken %>" method="post" id="form">
+        <form action="/paystack" method="post" id="form">
             <input type="hidden" name="total" value="<%=total%>">
+            <input type="hidden" value="<%=locals.csrfToken%>"name="_csrf" class="_csrf">
             <a href=""><button class="home_btn" id="check_out">Check Out</button></a>
         </form>
         <% }%>

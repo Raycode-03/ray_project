@@ -4,12 +4,14 @@
         <img src='/logo/second-kh-logo.png' alt=""class='logo_pic_footer' />
         </div>
         <div class="news">
-            <form action="" method='post' onsubmit="return false" id="form">
+            <form action="/kongahub/subscribe" method='post' onsubmit="return false" id="form">
+
                 <h2>JOIN OUR NEWSLETTER</h2><br/>
                 <p class='news_p'>Keep up on our always evoling product feature and get excelsive offers lastest news
                     and product announcement. Enter your e-mail and subscribe to our newsletter.</p>
-                <input type="email" placeholder="Enter your Email" class="new_input">
-                <button class="new_btn">Subscribe</button>
+                    <p><div id="newsletter_message"  style="color: green; margin-bottom: 10px;"></div></p>
+                <input type="email" placeholder="Enter your Email" class="new_input" name="email">
+                <button class="new_btn" data-csrf="<%=locals.csrfToken%>">Subscribe</button>
             </form>
     </div>
     <div class="hold">
@@ -21,7 +23,7 @@
         <div class="social">
             <h3> <b class="c">Follow Us</b> </h3>
             <a href="http://t.me/Raystar03"><img src='/logo/telegram.png' alt=""/></a>
-            <a href="http://wa.me/07064658911"><img src='/logo/icons8-whatsapp-30.png' alt=""/></a>
+            <a href="http://wa.me/+2347064658911"><img src='/logo/icons8-whatsapp-30.png' alt=""/></a>
         </div>
         
     </div>        
@@ -34,6 +36,6 @@
 
 
 <script src="/js/navbar.js" defer></script>
-
+<script src="/js/subscribe.js" defer></script>
 </body>
 </html>

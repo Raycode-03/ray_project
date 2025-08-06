@@ -1,6 +1,6 @@
 <article class="product_item">
     <a href="/kongahub/<%=page_type%>/details/<%=p._id%>">
-    <img src="<%=p.image_path%>" alt="<%=p.title%>">
+    <img src="<%=p.imageUrl%>" alt="<%=p.title%>">
     <div class="product_content">
         <h2><%=p.title%></h2>
         <h3 class="item_price"><%=p.price%></h3>
@@ -8,7 +8,8 @@
         </a>
         <% if(!home_page){ %>
         <div class="product_action">
-            <form action="/kongahub/products/cart/<%=p._id%>?_csrf=<%= locals.csrfToken %>" method="post">
+            <form action="/kongahub/products/cart/<%=p._id%>" method="post">
+                <input type="hidden" value="<%=locals.csrfToken%>"name="_csrf" class="_csrf">
                 <div class="no">
                     <select name="amount" id="">
                         <option value="1">1</option>
