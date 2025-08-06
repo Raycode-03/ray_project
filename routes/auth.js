@@ -30,7 +30,7 @@ router.post('/signup',async(req,res)=>{
   const email=req.body.email
   const password=req.body.password
   const con_password=req.body.conpassword
-  const fullname=req.body.fullname
+  let fullname=req.body.fullname
   const state=req.body.state
   const country = req.body.country
  
@@ -89,7 +89,7 @@ router.post('/signup',async(req,res)=>{
     function titlecase(str){
       return str.toLowerCase().split(' ').map(word=>{return word.charAt(0).toUpperCase()+word.slice(1)}).join(' ');
     }
-    fullname= titlecase(fullname);
+    fullname = titlecase(fullname);
     const data={
       email,
       password:hash_password,
