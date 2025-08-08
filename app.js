@@ -43,9 +43,9 @@ app.set('view engine','ejs');
 // for the session database
 let mongodb_url='mongodb://localhost:27017';
 // using enviroment variables
-if(process.env.MONGODB_URL){
-    mongodb_url=process.env.MONGODB_URL;
-}
+// if(process.env.MONGODB_URL){
+//     mongodb_url=process.env.MONGODB_URL;
+// }
 const store=new mongodbstore(
     {
         // the mongodb_url is needed for the session
@@ -102,15 +102,6 @@ app.use(async (req, res, next) => {
 	}
     next();
 });
-// err on csrf_token 
-// note to future self add the err exire code when quering sessions
-app.use((err, req, res, next) => {
-        if(err.code=="EBADCSRFTOKEN"){
-            req.flash('error', 'Your session has expired or the request was tampered with. Please log in again.');
-            return res.redirect('/login'); // Redirect to login page
-        }
-  next(err); // Pass other errors to the next error handler
-    });
 // middlewear for the routes
 app.use(auth);
 app.use(user);
@@ -127,6 +118,12 @@ app.use((req,res)=>{
 // for the server side error
 app.use((err,req,res,next)=>{
     console.log(err)
+    // err on csrf_token 
+    // note to future self add the err exire code when quering sessions
+    if(err.code=="EBADCSRFTOKEN"){
+            req.flash('error', 'Your session has expired or the request was tampered with. Please log in again.');
+            return res.redirect('/login'); // Redirect to login page
+    }
     res.status(500).render('error/500');
     next()
 });

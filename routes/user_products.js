@@ -29,7 +29,7 @@ router.get('/kongahub/laptops',async(req,res)=>{
   if(!res.locals.isauth){
     return res.redirect('/login')
     }
-    let products=await db.get_gb().collection('products').find({product_type:"deals"}).toArray();
+    let products=await db.get_gb().collection('products').find({product_type:"laptops"}).toArray();
 
     res.render('user/user_laptops',{products,messages:req.flash()});
 })

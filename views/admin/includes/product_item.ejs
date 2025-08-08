@@ -2,7 +2,7 @@
     <img src="<%=p.imageUrl%>" alt="<%=p.title%>">
     <div class="product_content">
         <h2><%=p.title%></h2>
-        <h3><%=p.price%></h3>
+        <h3>₦<%=p.price%></h3>
         <div class="product_action">
             <a href="/admin/products/update/<%=p._id%>">Edit</a>
                 <button data-id="<%=p._id%>" data-csrf="<%=locals.csrfToken%>">Delete</button>
