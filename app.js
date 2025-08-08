@@ -41,11 +41,11 @@ app.set('views',path.join(__dirname,'views'));
 app.set('view engine','ejs');
 
 // for the session database
-let mongodb_url='mongodb://localhost:27017';
+// let mongodb_url='mongodb://localhost:27017';
 // using enviroment variables
-// if(process.env.MONGODB_URL){
-//     mongodb_url=process.env.MONGODB_URL;
-// }
+if(process.env.MONGODB_URL){
+    mongodb_url=process.env.MONGODB_URL;
+}
 const store=new mongodbstore(
     {
         // the mongodb_url is needed for the session
